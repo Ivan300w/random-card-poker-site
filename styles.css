@@ -432,7 +432,6 @@ main section {
 
 .section-copy p,
 .formats-layout p,
-.pay-copy p,
 .contact-copy p {
   color: var(--muted);
   line-height: 1.72;
@@ -572,63 +571,13 @@ main section {
   display: block;
   margin: 4px 0;
   font-family: "Barlow Condensed", Inter, sans-serif;
-  font-size: 3rem;
+  font-size: clamp(2.15rem, 4vw, 3rem);
   line-height: 1;
 }
 
 .metric-panel small {
   color: var(--muted);
   font-weight: 700;
-}
-
-.pay-layout {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.44fr) minmax(0, 1fr);
-  gap: 34px;
-  align-items: start;
-  margin-top: 56px;
-}
-
-.pay-table {
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.pay-table [role="row"] {
-  display: grid;
-  grid-template-columns: minmax(180px, 1.2fr) repeat(3, minmax(76px, 0.42fr));
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.pay-table [role="row"]:first-child {
-  border-top: 0;
-}
-
-.pay-table span {
-  min-height: 46px;
-  display: flex;
-  align-items: center;
-  padding: 11px 14px;
-  color: var(--muted);
-  font-size: 0.92rem;
-  font-weight: 700;
-}
-
-.pay-table span:not(:first-child) {
-  justify-content: center;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--ink);
-}
-
-.pay-table .pay-head span {
-  min-height: 44px;
-  color: var(--white);
-  background: var(--purple);
-  font-size: 0.78rem;
-  font-weight: 900;
-  text-transform: uppercase;
 }
 
 .format-switcher {
@@ -936,8 +885,7 @@ main section {
   .math-layout,
   .contact-layout,
   .approval-block,
-  .section-heading,
-  .pay-layout {
+  .section-heading {
     grid-template-columns: 1fr;
   }
 }
@@ -1046,14 +994,6 @@ main section {
     grid-template-columns: 1fr;
   }
 
-  .pay-table {
-    overflow-x: auto;
-  }
-
-  .pay-table [role="row"] {
-    min-width: 620px;
-  }
-
   .contact-form {
     padding: 20px;
   }
@@ -1127,28 +1067,16 @@ main section {
 
 .showcase-card {
   position: absolute;
-  width: 96px;
-  height: 136px;
-  display: grid;
-  place-items: center;
-  border: 2px solid #111;
+  width: 104px;
+  height: 150px;
+  display: block;
+  border: 0;
   border-radius: 8px;
-  color: #111;
   background: #fff;
   box-shadow: 0 16px 26px rgba(0, 0, 0, 0.35);
-  font-family: "Barlow Condensed", Inter, sans-serif;
-  font-size: 3.1rem;
-  font-weight: 800;
+  object-fit: cover;
   transform-origin: 50% 120%;
   animation: card-rise 700ms ease both;
-}
-
-.showcase-card span {
-  position: absolute;
-  right: 12px;
-  bottom: 8px;
-  color: #090909;
-  font-size: 1.3rem;
 }
 
 .showcase-card:nth-child(1) {
@@ -1174,14 +1102,6 @@ main section {
 .showcase-card:nth-child(5) {
   transform: translateX(152px) rotate(16deg);
   animation-delay: 580ms;
-}
-
-.showcase-card.mystery {
-  color: var(--gold);
-  background:
-    linear-gradient(135deg, rgba(8, 8, 8, 0.98), rgba(40, 17, 53, 0.94)),
-    #111;
-  border-color: var(--purple);
 }
 
 .community-row {
