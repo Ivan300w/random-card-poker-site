@@ -1,73 +1,43 @@
-const segments = Array.from(document.querySelectorAll(".segment"));
-const volumeInput = document.querySelector("#monthly-volume");
-const volumeOutput = document.querySelector("#volume-output");
-const brandToggle = document.querySelector("#brand-toggle");
-const apiToggle = document.querySelector("#api-toggle");
-const recommendationTitle = document.querySelector("#recommendation-title");
-const recommendationCopy = document.querySelector("#recommendation-copy");
+const formatTabs = Array.from(document.querySelectorAll(".format-tab"));
+const formatLabel = document.querySelector("#format-label");
+const formatTitle = document.querySelector("#format-title");
+const formatCopy = document.querySelector("#format-copy");
 const licenseForm = document.querySelector("#license-form");
 const formStatus = document.querySelector("#form-status");
 
-const recommendations = {
-  revenue: {
-    title: "Revenue Share Launch",
-    copy: "Una entrada ligera para validar mercado, medir conversión y crecer con participación sobre resultados."
-  },
-  whiteLabel: {
-    title: "White Label Pro",
-    copy: "Buen equilibrio para operadores digitales con marca propia y volumen medio."
-  },
+const formatContent = {
   live: {
-    title: "Licencia Live Venue",
-    copy: "Pensada para salas físicas o activaciones presenciales con operación controlada y soporte de lanzamiento."
+    label: "Formato recomendado",
+    title: "Live dealer / casino online en vivo",
+    copy: "Dealer real, cámara, interfaz digital y reportes de operación para evaluar la experiencia con público remoto."
   },
-  enterprise: {
-    title: "Enterprise API",
-    copy: "La mejor opción para plataformas con wallet, lobby, CRM o infraestructura técnica propia."
+  floor: {
+    label: "Sala presencial",
+    title: "Mesa física de casino",
+    copy: "Layout de paño, Botón D rotativo, procedimientos de dealer y límites configurables para operación en piso."
+  },
+  digital: {
+    label: "Integración sujeta a alcance",
+    title: "Casino online / RNG",
+    copy: "Versión automática evaluable con lógica de pagos, demo de escritorio y documentación técnica para revisión."
   }
 };
 
-let selectedChannel = "digital";
+formatTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const content = formatContent[tab.dataset.format];
+    if (!content) return;
 
-function getRecommendation() {
-  const volume = Number(volumeInput.value);
-  const wantsBrand = brandToggle.checked;
-  const wantsApi = apiToggle.checked;
+    formatTabs.forEach((item) => {
+      const isActive = item === tab;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-selected", String(isActive));
+    });
 
-  if (wantsApi || volume >= 48) {
-    return recommendations.enterprise;
-  }
-
-  if (selectedChannel === "live") {
-    return recommendations.live;
-  }
-
-  if (wantsBrand || selectedChannel === "hybrid" || volume >= 16) {
-    return recommendations.whiteLabel;
-  }
-
-  return recommendations.revenue;
-}
-
-function updateEstimator() {
-  const recommendation = getRecommendation();
-  volumeOutput.value = volumeInput.value;
-  volumeOutput.textContent = volumeInput.value;
-  recommendationTitle.textContent = recommendation.title;
-  recommendationCopy.textContent = recommendation.copy;
-}
-
-segments.forEach((segment) => {
-  segment.addEventListener("click", () => {
-    selectedChannel = segment.dataset.channel;
-    segments.forEach((button) => button.classList.toggle("is-active", button === segment));
-    updateEstimator();
+    formatLabel.textContent = content.label;
+    formatTitle.textContent = content.title;
+    formatCopy.textContent = content.copy;
   });
-});
-
-[volumeInput, brandToggle, apiToggle].forEach((control) => {
-  control.addEventListener("input", updateEstimator);
-  control.addEventListener("change", updateEstimator);
 });
 
 licenseForm.addEventListener("submit", (event) => {
@@ -79,29 +49,25 @@ licenseForm.addEventListener("submit", (event) => {
   const email = String(data.get("email") || "").trim();
   const operation = String(data.get("operation") || "").trim();
   const message = String(data.get("message") || "").trim();
-  const recommendation = recommendationTitle.textContent.trim();
 
   if (!name || !company || !email || !operation) {
     formStatus.textContent = "Completa los campos requeridos para preparar la solicitud.";
     return;
   }
 
-  const subject = encodeURIComponent(`Solicitud de licencia - ${company}`);
+  const subject = encodeURIComponent(`Evaluación Random Card Poker - ${company}`);
   const body = encodeURIComponent(
     [
       `Nombre: ${name}`,
       `Empresa: ${company}`,
       `Correo: ${email}`,
-      `Tipo de operación: ${operation}`,
-      `Recomendación estimada: ${recommendation}`,
+      `Formato de interés: ${operation}`,
       "",
       "Mensaje:",
-      message || "Sin mensaje adicional."
+      message || "Solicito información para evaluación comercial y demo privada."
     ].join("\n")
   );
 
   formStatus.textContent = "Abriendo tu correo con la solicitud preparada.";
   window.location.href = `mailto:gm@randomcardpoker.com?subject=${subject}&body=${body}`;
 });
-
-updateEstimator();
