@@ -11,31 +11,31 @@ const formatContent = {
   live: {
     label: "Formato recomendado",
     title: "Live dealer / casino online en vivo",
-    copy: "Dealer real, cámara, interfaz digital y reportes de operación para evaluar la experiencia con público remoto.",
+    copy: "Una presentación con dealer real puede mostrar el suspense de la carta comunitaria ante público remoto.",
     bullets: [
-      "Demo guiada con flujo de dealer y selección del Botón D.",
-      "Material para revisar cámara, UI, ritmo y reportes.",
-      "Alcance técnico definido bajo NDA o LOI."
+      "Demo guiada del flujo y selección del Botón D.",
+      "Revisión de ritmo, cámara e interacción visual.",
+      "Alcance técnico tratado en conversación privada."
     ]
   },
   floor: {
     label: "Sala presencial",
     title: "Mesa física de casino",
-    copy: "Layout de paño, Botón D rotativo, procedimientos de dealer y límites configurables para operación en piso.",
+    copy: "Una mesa presencial permite vender el momento social: todos miran la carta que completa la ronda.",
     bullets: [
-      "Paño, posiciones, zonas de apuesta y procedimiento de pago.",
-      "Entrenamiento de dealer apoyado en manual oficial.",
-      "Piloto sujeto a regulador, laboratorio y condiciones comerciales."
+      "Presentación visual del paño, posiciones y dinámica.",
+      "Flujo simple para explicar al jugador en pocos minutos.",
+      "Detalles de operación reservados para revisión privada."
     ]
   },
   digital: {
-    label: "Integración sujeta a alcance",
+    label: "Exploración digital",
     title: "Casino online / RNG",
-    copy: "Versión automática evaluable con lógica de pagos, demo de escritorio y documentación técnica para revisión.",
+    copy: "El concepto también puede explorarse como experiencia digital, con alcance definido según plataforma y mercado.",
     bullets: [
-      "Lógica de pagos implementada para revisión técnica.",
-      "RNG, UI, wallet y reporting se definen por integración.",
-      "Certificación final depende de plataforma y jurisdicción."
+      "Demo conceptual para revisar ritmo, UI y experiencia.",
+      "Integración, RNG y reporting se conversan caso por caso.",
+      "La información sensible se comparte solo en privado."
     ]
   }
 };
@@ -60,7 +60,7 @@ formatTabs.forEach((tab) => {
 
 const revealTargets = Array.from(
   document.querySelectorAll(
-    ".section-heading, .operator-layout, .spec-grid, .solution-grid article, .operator-fit article, .flow-grid article, .value-grid article, .metric-panel div, .pay-layout, .format-switcher, .path-steps article, .package-list article, .approval-block, .contact-layout"
+    ".section-heading, .operator-layout, .spec-grid, .solution-grid article, .operator-fit article, .flow-grid article, .value-grid article, .metric-panel div, .format-switcher, .path-steps article, .package-list article, .approval-block, .contact-layout"
   )
 );
 
@@ -138,7 +138,7 @@ if (licenseForm) {
       return;
     }
 
-    const subject = encodeURIComponent(`Evaluación Random Card Poker - ${company}`);
+    const subject = encodeURIComponent(`Demo privada Random Card Poker - ${company}`);
     const body = encodeURIComponent(
       [
         `Nombre: ${name}`,
@@ -149,11 +149,11 @@ if (licenseForm) {
         `Perfil de empresa: ${profile || "No especificado"}`,
         "",
         "Mensaje:",
-        message || "Solicito información para evaluación comercial y demo privada."
+        message || "Quiero conocer Random Card Poker y coordinar una demo privada."
       ].join("\n")
     );
 
-    formStatus.textContent = "Abriendo tu correo con la solicitud preparada.";
+    formStatus.textContent = "Abriendo tu correo con la solicitud de demo preparada.";
     window.location.href = `mailto:gm@randomcardpoker.com?subject=${subject}&body=${body}`;
   });
 }
