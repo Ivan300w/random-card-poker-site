@@ -1035,6 +1035,12 @@ main section {
     width: 100%;
   }
 
+  .hero-actions .button-secondary {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.34);
+    background: rgba(8, 8, 8, 0.7);
+  }
+
   .section-shell {
     width: min(100% - 32px, 1160px);
   }
