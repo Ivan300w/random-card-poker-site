@@ -4,7 +4,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 
 const revealTargets = Array.from(
   document.querySelectorAll(
-    ".section-heading, .operator-layout, .spec-grid, .solution-grid article, .operator-fit article, .flow-grid article, .value-grid article, .metric-panel div, .format-cards article, .path-steps article, .package-list article, .approval-block, .contact-layout"
+    ".section-heading, .operator-layout, .spec-grid, .illustrative-hand, .boton-demo, .solution-grid article, .operator-fit article, .flow-grid article, .value-grid article, .metric-panel div, .format-cards article, .path-steps article, .package-list article, .faq-grid article, .contact-layout, .legal-section, .legal-card"
   )
 );
 
