@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Random Card Poker icon</title>
+  <desc id="desc">A random playing card with a question mark, supporting card fan and Boton D chip.</desc>
+  <rect x="24" y="24" width="464" height="464" rx="98" fill="#0d3931" stroke="#e5c24d" stroke-width="20"/>
+  <g transform="translate(148 218) rotate(-16)">
+    <rect x="-48" y="-71" width="96" height="142" rx="16" fill="#fffdf7" stroke="#101010" stroke-width="8"/>
+    <text x="-29" y="-31" font-family="Arial, Helvetica, sans-serif" font-size="37" font-weight="800" fill="#101010">A</text>
+    <path d="M0 -3 C-20 17 -27 31 -12 40 C-6 44 -2 41 0 35 C2 41 6 44 12 40 C27 31 20 17 0 -3 Z" fill="#101010"/>
+    <rect x="-5" y="35" width="10" height="25" fill="#101010"/>
+  </g>
+  <g transform="translate(211 214) rotate(-7)">
+    <rect x="-48" y="-71" width="96" height="142" rx="16" fill="#fffdf7" stroke="#101010" stroke-width="8"/>
+    <text x="-29" y="-31" font-family="Arial, Helvetica, sans-serif" font-size="37" font-weight="800" fill="#101010">K</text>
+  </g>
+  <g transform="translate(274 214) rotate(2)">
+    <rect x="-48" y="-71" width="96" height="142" rx="16" fill="#fffdf7" stroke="#101010" stroke-width="8"/>
+    <text x="-29" y="-31" font-family="Arial, Helvetica, sans-serif" font-size="37" font-weight="800" fill="#101010">Q</text>
+  </g>
+  <g transform="translate(333 224) rotate(10)">
+    <rect x="-81" y="-111" width="162" height="222" rx="20" fill="#fffdf7" stroke="#101010" stroke-width="10"/>
+    <text x="0" y="60" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="170" font-weight="900" fill="#683088" stroke="#101010" stroke-width="12" paint-order="stroke fill">?</text>
+  </g>
+  <circle cx="256" cy="419" r="51" fill="#141414" stroke="#e5c24d" stroke-width="12"/>
+  <text x="256" y="442" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="900" fill="#e5c24d">D</text>
+</svg>
