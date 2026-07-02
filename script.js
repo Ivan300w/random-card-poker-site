@@ -35,36 +35,42 @@ if (requestForm) {
     const data = new FormData(requestForm);
     const name = String(data.get("name") || "").trim();
     const company = String(data.get("company") || "").trim();
+    const website = String(data.get("website") || "").trim();
     const role = String(data.get("role") || "").trim();
     const email = String(data.get("email") || "").trim();
-    const country = String(data.get("country") || "").trim();
+    const jurisdiction = String(data.get("jurisdiction") || "").trim();
     const interest = String(data.get("interest") || "").trim();
+    const timeline = String(data.get("timeline") || "").trim();
     const message = String(data.get("message") || "").trim();
+    const qualified = data.get("qualified") === "on";
 
-    if (!name || !company || !email || !interest) {
+    if (!name || !company || !website || !email || !jurisdiction || !interest || !timeline || !qualified) {
       if (formStatus) {
-        formStatus.textContent = "Please complete the required fields to prepare the private demo request.";
+        formStatus.textContent = "Please complete the required fields and confirm this is a qualified commercial inquiry.";
       }
       return;
     }
 
-    const subject = encodeURIComponent(`Private demo request - Random Card Poker - ${company}`);
+    const subject = encodeURIComponent(`Commercial introduction request - Random Card Poker - ${company}`);
     const body = encodeURIComponent(
       [
         `Name: ${name}`,
         `Company: ${company}`,
+        `Company website: ${website}`,
         `Role: ${role || "Not specified"}`,
-        `Email: ${email}`,
-        `Country: ${country || "Not specified"}`,
-        `Area of interest: ${interest}`,
+        `Business email: ${email}`,
+        `Jurisdiction / target market: ${jurisdiction}`,
+        `Interest type: ${interest}`,
+        `Estimated timeline: ${timeline}`,
+        `Qualified commercial inquiry confirmed: ${qualified ? "Yes" : "No"}`,
         "",
         "Message:",
-        message || "I would like to request a private review conversation for Random Card Poker."
+        message || "I would like to request a 20-minute commercial introduction for Random Card Poker."
       ].join("\n")
     );
 
     if (formStatus) {
-      formStatus.textContent = "Opening your email client with the private demo request prepared.";
+      formStatus.textContent = "Opening your email client with the commercial introduction request prepared.";
     }
 
     window.location.href = `mailto:gm@randomcardpoker.com?subject=${subject}&body=${body}`;

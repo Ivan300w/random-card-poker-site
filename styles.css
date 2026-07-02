@@ -128,6 +128,7 @@ img {
 
 .button {
   padding: 15px 22px;
+  text-align: center;
 }
 
 .header-action:hover,
@@ -650,6 +651,10 @@ main section {
   line-height: 1.62;
 }
 
+.operator-value-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .math-section {
   padding: 96px 0;
   background:
@@ -695,6 +700,10 @@ main section {
 .metric-panel small {
   color: var(--muted);
   font-weight: 700;
+}
+
+.analysis-panel div {
+  border-color: rgba(233, 187, 18, 0.24);
 }
 
 .format-switcher {
@@ -772,7 +781,7 @@ main section {
   position: absolute;
   left: 0;
   color: var(--gold);
-  content: "•";
+  content: "\2022";
   font-weight: 900;
 }
 
@@ -780,6 +789,10 @@ main section {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
+}
+
+.audience-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .format-cards article {
@@ -1036,6 +1049,25 @@ main section {
 .contact-form option {
   color: var(--paper-ink);
   background: var(--paper);
+}
+
+.contact-form .checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.contact-form .checkbox-field input {
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--gold);
+}
+
+.contact-form .checkbox-field span {
+  line-height: 1.45;
 }
 
 .full-span {
