@@ -44,7 +44,7 @@ if (requestForm) {
     const message = String(data.get("message") || "").trim();
     const qualified = data.get("qualified") === "on";
 
-    if (!name || !company || !website || !email || !jurisdiction || !interest || !timeline || !qualified) {
+    if (!name || !company || !email || !jurisdiction || !interest || !qualified) {
       if (formStatus) {
         formStatus.textContent = "Please complete the required fields and confirm this is a qualified commercial inquiry.";
       }
@@ -56,12 +56,12 @@ if (requestForm) {
       [
         `Name: ${name}`,
         `Company: ${company}`,
-        `Company website: ${website}`,
+        `Company website: ${website || "Not specified"}`,
         `Role: ${role || "Not specified"}`,
         `Business email: ${email}`,
         `Jurisdiction / target market: ${jurisdiction}`,
         `Interest type: ${interest}`,
-        `Estimated timeline: ${timeline}`,
+        `Estimated timeline: ${timeline || "Not specified"}`,
         `Qualified commercial inquiry confirmed: ${qualified ? "Yes" : "No"}`,
         "",
         "Message:",
