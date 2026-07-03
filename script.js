@@ -51,7 +51,7 @@ if (requestForm) {
       return;
     }
 
-    const subject = encodeURIComponent(`Commercial introduction request - Random Card Poker - ${company}`);
+    const subject = encodeURIComponent(`Private operator review request - Random Card Poker - ${company}`);
     const body = encodeURIComponent(
       [
         `Name: ${name}`,
@@ -65,12 +65,12 @@ if (requestForm) {
         `Qualified commercial inquiry confirmed: ${qualified ? "Yes" : "No"}`,
         "",
         "Message:",
-        message || "I would like to request a 20-minute commercial introduction for Random Card Poker."
+        message || "I would like to request private operator review for Random Card Poker."
       ].join("\n")
     );
 
     if (formStatus) {
-      formStatus.textContent = "Opening your email client with the commercial introduction request prepared.";
+      formStatus.textContent = "Opening your email client with the private operator review request prepared.";
     }
 
     window.location.href = `mailto:gm@randomcardpoker.com?subject=${subject}&body=${body}`;
