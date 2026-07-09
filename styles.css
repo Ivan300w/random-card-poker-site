@@ -1619,7 +1619,7 @@ main section {
 
 .boton-demo-table {
   position: relative;
-  min-height: 250px;
+  min-height: 340px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius);
@@ -1632,25 +1632,27 @@ main section {
 
 .demo-slots {
   position: absolute;
-  inset: 32px 7% auto;
+  inset: 26px 7% auto;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(4, minmax(82px, 124px));
+  justify-content: center;
+  gap: 18px;
 }
 
-.demo-slots span {
-  min-height: 104px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+.demo-slot-card {
+  width: 100%;
+  aspect-ratio: 0.69;
+  border: 2px solid rgba(255, 255, 255, 0.78);
   border-radius: var(--radius);
-  background:
-    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0 4px, transparent 4px 8px),
-    rgba(0, 0, 0, 0.44);
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.44);
+  object-fit: cover;
 }
 
 .demo-d-button {
   position: absolute;
-  left: 50%;
-  bottom: 26px;
+  left: calc(50% - 58px);
+  bottom: 36px;
   width: 116px;
   height: 116px;
   display: grid;
@@ -1672,27 +1674,24 @@ main section {
 
 .demo-flip-card {
   position: absolute;
-  left: 50%;
-  top: 54px;
-  width: 84px;
-  height: 116px;
-  display: grid;
-  place-items: center;
+  left: calc(50% + 84px);
+  bottom: 38px;
+  width: 78px;
+  height: 108px;
   border: 3px solid #0b0b0b;
   border-radius: var(--radius);
   background: #fff;
   box-shadow: 0 20px 36px rgba(0, 0, 0, 0.44);
-  transform: translateX(-50%) rotateY(0deg);
-  transform-style: preserve-3d;
+  overflow: hidden;
+  transform: translateX(-50%);
   animation: blind-card-flip 3.8s ease-in-out infinite;
 }
 
-.demo-flip-card span {
-  color: var(--purple);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 4.2rem;
-  font-weight: 900;
-  line-height: 1;
+.demo-flip-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .solution-grid {
@@ -1832,16 +1831,16 @@ main section {
 @keyframes blind-card-flip {
   0%,
   42% {
-    transform: translateX(-50%) rotateY(0deg) translateY(0);
+    transform: translateX(-50%) translateY(0) scale(1);
     box-shadow: 0 20px 36px rgba(0, 0, 0, 0.44);
   }
   62% {
-    transform: translateX(-50%) rotateY(86deg) translateY(-10px);
+    transform: translateX(-50%) translateY(-8px) scale(1.04);
     box-shadow: 0 26px 46px rgba(233, 187, 18, 0.34);
   }
   82%,
   100% {
-    transform: translateX(-50%) rotateY(0deg) translateY(0);
+    transform: translateX(-50%) translateY(0) scale(1);
     box-shadow: 0 20px 36px rgba(0, 0, 0, 0.44);
   }
 }
@@ -1956,32 +1955,34 @@ main section {
   }
 
   .boton-demo-table {
-    min-height: 230px;
+    min-height: 260px;
   }
 
   .demo-slots {
-    inset: 26px 5% auto;
+    inset: 24px 18px auto;
+    grid-template-columns: repeat(4, minmax(54px, 76px));
+    justify-content: center;
     gap: 8px;
   }
 
-  .demo-slots span {
-    min-height: 86px;
+  .demo-slot-card {
+    border-width: 1px;
   }
 
   .demo-d-button {
-    width: 96px;
-    height: 96px;
-    font-size: 0.94rem;
+    left: calc(50% - 44px);
+    bottom: 26px;
+    width: 88px;
+    height: 88px;
+    font-size: 0.86rem;
   }
 
   .demo-flip-card {
-    top: 46px;
-    width: 68px;
-    height: 96px;
-  }
-
-  .demo-flip-card span {
-    font-size: 3.3rem;
+    left: calc(50% + 64px);
+    top: auto;
+    bottom: 28px;
+    width: 62px;
+    height: 88px;
   }
 
   .legal-header {
