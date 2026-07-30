@@ -55,7 +55,29 @@ if (!prefersReducedMotion && "IntersectionObserver" in window) {
 }
 
 if (requestForm) {
-  requestForm.addEventListener("submit", (event) => {
+  const submitButton = requestForm.querySelector('button[type="submit"]');
+  const defaultButtonText = submitButton?.textContent || "Enviar solicitud comercial";
+  const fallbackEmail = "gm@randomcardpoker.com";
+
+  const setFormStatus = (message, state = "") => {
+    if (!formStatus) return;
+    formStatus.classList.remove("is-success", "is-error");
+    if (state) formStatus.classList.add(`is-${state}`);
+    formStatus.textContent = message;
+  };
+
+  const setSubmitting = (isSubmitting) => {
+    if (!submitButton) return;
+    submitButton.disabled = isSubmitting;
+    submitButton.textContent = isSubmitting ? "Enviando solicitud..." : defaultButtonText;
+  };
+
+  const pageParams = new URLSearchParams(window.location.search);
+  if (pageParams.get("enviado") === "1") {
+    setFormStatus("Solicitud enviada correctamente. Gracias; revisaremos la información y responderemos al correo indicado.", "success");
+  }
+
+  requestForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const data = new FormData(requestForm);
@@ -69,36 +91,65 @@ if (requestForm) {
     const timeline = String(data.get("timeline") || "").trim();
     const message = String(data.get("message") || "").trim();
     const qualified = data.get("qualified") === "on";
+    const honeypot = String(data.get("_honey") || "").trim();
 
-    if (!name || !company || !email || !jurisdiction || !interest || !qualified) {
-      if (formStatus) {
-        formStatus.textContent = "Complete los campos obligatorios y confirme que se trata de una consulta comercial calificada.";
-      }
+    if (honeypot) {
+      requestForm.reset();
+      setFormStatus("Solicitud recibida.", "success");
       return;
     }
 
-    const subject = encodeURIComponent(`Solicitud de revisi\u00f3n privada - Random Card Poker - ${company}`);
-    const body = encodeURIComponent(
-      [
-        `Nombre: ${name}`,
-        `Empresa: ${company}`,
-        `Sitio web de la empresa: ${website || "No especificado"}`,
-        `Cargo: ${role || "No especificado"}`,
-        `Correo corporativo: ${email}`,
-        `Jurisdicci\u00f3n / mercado objetivo: ${jurisdiction}`,
-        `Tipo de inter\u00e9s: ${interest}`,
-        `Calendario estimado: ${timeline || "No especificado"}`,
-        `Consulta comercial calificada confirmada: ${qualified ? "S\u00ed" : "No"}`,
-        "",
-        "Mensaje:",
-        message || "Deseo solicitar una revisi\u00f3n privada de Random Card Poker."
-      ].join("\n")
-    );
-
-    if (formStatus) {
-      formStatus.textContent = "Abriendo su aplicaci\u00f3n de correo con la solicitud de revisi\u00f3n privada preparada.";
+    if (!name || !company || !email || !jurisdiction || !interest || !qualified) {
+      setFormStatus("Complete los campos obligatorios y confirme que se trata de una consulta comercial calificada.", "error");
+      requestForm.reportValidity();
+      return;
     }
 
-    window.location.href = `mailto:gm@randomcardpoker.com?subject=${subject}&body=${body}`;
+    const payload = {
+      nombre: name,
+      empresa: company,
+      sitio_web: website || "No especificado",
+      cargo: role || "No especificado",
+      email,
+      jurisdiccion_mercado: jurisdiction,
+      tipo_de_interes: interest,
+      calendario_estimado: timeline || "No especificado",
+      consulta_comercial_calificada: "Sí",
+      mensaje: message || "Deseo solicitar una revisión privada de Random Card Poker.",
+      _replyto: email,
+      _subject: `Solicitud comercial - Random Card Poker - ${company}`,
+      _template: "table"
+    };
+
+    setSubmitting(true);
+    setFormStatus("Enviando su solicitud comercial...");
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${fallbackEmail}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json"
+        },
+        body: new URLSearchParams(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`FormSubmit respondió con estado ${response.status}`);
+      }
+
+      const result = await response.json();
+      const submissionSucceeded = result.success === true || result.success === "true";
+      if (!submissionSucceeded) {
+        throw new Error("FormSubmit no confirmó el envío");
+      }
+
+      requestForm.reset();
+      setFormStatus("Solicitud enviada correctamente. Gracias; revisaremos la información y responderemos al correo indicado.", "success");
+    } catch (error) {
+      console.error("No fue posible enviar la solicitud comercial.", error);
+      setFormStatus(`No fue posible completar el envío. Escriba directamente a ${fallbackEmail}.`, "error");
+    } finally {
+      setSubmitting(false);
+    }
   });
 }

@@ -267,41 +267,6 @@ h3 {
   line-height: 1.2;
 }
 
-.hero-copy {
-  max-width: 620px;
-  color: rgba(255, 250, 240, 0.8);
-  font-size: 1rem;
-  line-height: 1.58;
-}
-
-.hero-statement {
-  max-width: 680px;
-  margin: 16px 0 0;
-  color: var(--white);
-  font-size: 1.04rem;
-  font-weight: 800;
-  line-height: 1.42;
-}
-
-.hero-trust {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  max-width: 720px;
-  margin-top: 14px;
-}
-
-.hero-trust span {
-  padding: 8px 11px;
-  border: 1px solid rgba(233, 187, 18, 0.34);
-  border-radius: 999px;
-  color: var(--gold);
-  background: rgba(10, 10, 10, 0.68);
-  font-size: 0.76rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
 .hero-subtitle {
   max-width: 680px;
   margin-bottom: 0;
@@ -339,18 +304,10 @@ h3 {
   color: var(--gold);
 }
 
-.hero-actions + .hero-copy {
-  margin-top: 18px;
-}
-
-.hero-trust + .hero-copy {
-  margin-top: 14px;
-}
-
 .hero-proof {
   position: absolute;
   right: 38px;
-  bottom: 30px;
+  bottom: 12px;
   display: grid;
   width: min(720px, calc(100% - 76px));
   grid-template-columns: repeat(4, 1fr);
@@ -363,21 +320,22 @@ h3 {
 }
 
 .hero-proof div {
-  padding: 18px;
+  padding: 10px 12px;
   background: rgba(8, 8, 8, 0.78);
 }
 
 .hero-proof dt {
   font-family: "Barlow Condensed", Inter, sans-serif;
   color: var(--white);
-  font-size: 2rem;
+  font-size: 1.25rem;
   font-weight: 800;
+  line-height: 1.05;
 }
 
 .hero-proof dd {
   margin: 4px 0 0;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.72rem;
 }
 
 .section-shell {
@@ -1201,6 +1159,15 @@ main section {
   line-height: 1.45;
 }
 
+.contact-form .form-honeypot {
+  display: none;
+}
+
+.contact-form button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
 .full-span {
   grid-column: 1 / -1;
 }
@@ -1211,6 +1178,14 @@ main section {
   color: var(--gold);
   font-size: 0.9rem;
   line-height: 1.4;
+}
+
+.form-status.is-success {
+  color: #7de0ad;
+}
+
+.form-status.is-error {
+  color: #ff9d9d;
 }
 
 .form-note {
@@ -1962,6 +1937,12 @@ main section {
   }
 }
 
+@media (min-width: 1101px) {
+  .hero-logo {
+    display: none;
+  }
+}
+
 @media (max-width: 700px) {
   .hero {
     align-items: start;
@@ -1972,26 +1953,6 @@ main section {
 
   .hero-inner {
     order: 0;
-  }
-
-  .hero-trust {
-    gap: 6px;
-    margin-top: 12px;
-  }
-
-  .hero-trust span {
-    padding: 7px 9px;
-    font-size: 0.68rem;
-    line-height: 1.15;
-  }
-
-  .hero-actions + .hero-copy {
-    margin-top: 14px;
-  }
-
-  .hero-copy {
-    font-size: 0.94rem;
-    line-height: 1.45;
   }
 
   .hero-bg {
