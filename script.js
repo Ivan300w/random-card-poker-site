@@ -1,6 +1,32 @@
 const requestForm = document.querySelector("#request-form");
 const formStatus = document.querySelector("#form-status");
+const menuToggle = document.querySelector(".menu-toggle");
+const primaryMenu = document.querySelector("#primary-menu");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const closeMenu = () => {
+  if (!menuToggle || !primaryMenu) return;
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation menu");
+  primaryMenu.classList.remove("is-open");
+};
+
+if (menuToggle && primaryMenu) {
+  menuToggle.addEventListener("click", () => {
+    const willOpen = menuToggle.getAttribute("aria-expanded") !== "true";
+    menuToggle.setAttribute("aria-expanded", String(willOpen));
+    menuToggle.setAttribute("aria-label", willOpen ? "Close navigation menu" : "Open navigation menu");
+    primaryMenu.classList.toggle("is-open", willOpen);
+  });
+
+  primaryMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1050) closeMenu();
+  });
+}
 
 const revealTargets = Array.from(
   document.querySelectorAll(
