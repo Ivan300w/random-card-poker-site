@@ -7,7 +7,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const closeMenu = () => {
   if (!menuToggle || !primaryMenu) return;
   menuToggle.setAttribute("aria-expanded", "false");
-  menuToggle.setAttribute("aria-label", "Open navigation menu");
+  menuToggle.setAttribute("aria-label", "Abrir men\u00fa de navegaci\u00f3n");
   primaryMenu.classList.remove("is-open");
 };
 
@@ -15,7 +15,7 @@ if (menuToggle && primaryMenu) {
   menuToggle.addEventListener("click", () => {
     const willOpen = menuToggle.getAttribute("aria-expanded") !== "true";
     menuToggle.setAttribute("aria-expanded", String(willOpen));
-    menuToggle.setAttribute("aria-label", willOpen ? "Close navigation menu" : "Open navigation menu");
+    menuToggle.setAttribute("aria-label", willOpen ? "Cerrar men\u00fa de navegaci\u00f3n" : "Abrir men\u00fa de navegaci\u00f3n");
     primaryMenu.classList.toggle("is-open", willOpen);
   });
 
@@ -72,31 +72,31 @@ if (requestForm) {
 
     if (!name || !company || !email || !jurisdiction || !interest || !qualified) {
       if (formStatus) {
-        formStatus.textContent = "Please complete the required fields and confirm this is a qualified commercial inquiry.";
+        formStatus.textContent = "Complete los campos obligatorios y confirme que se trata de una consulta comercial calificada.";
       }
       return;
     }
 
-    const subject = encodeURIComponent(`Private operator review request - Random Card Poker - ${company}`);
+    const subject = encodeURIComponent(`Solicitud de revisi\u00f3n privada - Random Card Poker - ${company}`);
     const body = encodeURIComponent(
       [
-        `Name: ${name}`,
-        `Company: ${company}`,
-        `Company website: ${website || "Not specified"}`,
-        `Role: ${role || "Not specified"}`,
-        `Business email: ${email}`,
-        `Jurisdiction / target market: ${jurisdiction}`,
-        `Interest type: ${interest}`,
-        `Estimated timeline: ${timeline || "Not specified"}`,
-        `Qualified commercial inquiry confirmed: ${qualified ? "Yes" : "No"}`,
+        `Nombre: ${name}`,
+        `Empresa: ${company}`,
+        `Sitio web de la empresa: ${website || "No especificado"}`,
+        `Cargo: ${role || "No especificado"}`,
+        `Correo corporativo: ${email}`,
+        `Jurisdicci\u00f3n / mercado objetivo: ${jurisdiction}`,
+        `Tipo de inter\u00e9s: ${interest}`,
+        `Calendario estimado: ${timeline || "No especificado"}`,
+        `Consulta comercial calificada confirmada: ${qualified ? "S\u00ed" : "No"}`,
         "",
-        "Message:",
-        message || "I would like to request private operator review for Random Card Poker."
+        "Mensaje:",
+        message || "Deseo solicitar una revisi\u00f3n privada de Random Card Poker."
       ].join("\n")
     );
 
     if (formStatus) {
-      formStatus.textContent = "Opening your email client with the private operator review request prepared.";
+      formStatus.textContent = "Abriendo su aplicaci\u00f3n de correo con la solicitud de revisi\u00f3n privada preparada.";
     }
 
     window.location.href = `mailto:gm@randomcardpoker.com?subject=${subject}&body=${body}`;
